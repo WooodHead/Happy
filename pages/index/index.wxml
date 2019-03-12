@@ -1,0 +1,119 @@
+<!--引入骨架屏模版 -->
+<skeleton selector="skt" loading="chiaroscuro" bgcolor="none"  wx:if="{{showSkeleton}}"></skeleton>
+
+<view class="DrawerPage {{modalName=='viewModal'?'show':''}}">
+  <view class="cu-custom" style="height:{{CustomBar}}px;">
+    <view class="cu-bar tabbar bg-black fixed" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+      <view class="action text-center" style='width: 100rpx'>
+        <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo" class='cu-btn icon-my icon bg-green shadow'> </button>
+        <block wx:else>
+          <view class="cu-avatar round" style="background-image:url({{userInfo.avatarUrl}})" bindtap="showModal" data-target="viewModal"></view>
+        </block>
+      </view>
+      <!-- <block wx:if="{{1!=TabCur?'cur':''}}">
+        <scroll-view scroll-x class="nav" scroll-with-animation scroll-left="{{scrollLeft}}" style='width:calc(100% - 440rpx)'>
+          <view class="cu-item {{index==TabCur?'text-green cur':''}}" wx:for="{{10}}" wx:key bindtap='tabSelect' data-id="{{index}}">
+            Tab{{index}}
+          </view>
+        </scroll-view>
+      </block> -->
+      <view class="flex solid-bottom padding justify-center">
+        <view class='padding-lg margin-lg radius'>Happy圈</view>
+      </view>
+    </view>
+  </view>
+<scroll-view scroll-y='true' class='skt' style='height:{{ScreenHeight}}px;'>
+  <view class="cu-card dynamic {{isCard?'no-card':''}}">
+    <view wx:for="1" wx:key class="cu-item shadow">
+      <view class="cu-list menu menu-avatar">
+        <view class="cu-item">
+          <view class="cu-avatar round lg skt-radius" style="background-image:url(/images/logo.png);"></view>
+          <view class='content flex-sub'>
+            <view><text class='skt-rect' decode="{{true}}" space="{{true}}">Binz丶Gao</text></view>
+            <view class='text-gray text-sm flex justify-between'>
+              <text class='skt-rect' decode="{{true}}">2019-03-12</text>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view class='text-content'>
+        <text class='skt-rect' decode="{{true}}">相当于一个用户动态交际的圈子的小程序</text>
+      </view>
+      <view class="grid col-3 grid-square flex-sub padding-lr">
+        <view class="bg-img skt-rect" style="background-image:url(/images/logo.png);" wx:for="{{9}}" wx:key>
+        </view>
+      </view>
+      <view class='text-gray text-sm text-right padding'>
+        <text class="icon-attentionfill skt-rect" decode="{{true}}">&nbsp;&nbsp; </text> 
+        <text class="icon-appreciatefill skt-rect" decode="{{true}}">&nbsp;&nbsp; </text> 
+        <text class="icon-messagefill skt-rect" decode="{{true}}">&nbsp;&nbsp;</text> 
+      </view>
+    </view>
+  </view>
+  </scroll-view>
+</view>
+<view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap='hideModal'>
+  <text class='icon-pullright'></text>
+</view>
+<view class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
+  <view class='padding-xl text-center text-white'>
+    <image src='/images/logo.png' class='response' mode='widthFix' style='width:200rpx;margin-top:100rpx'></image>
+    <view class='text-xl'>Happy圈
+      <text class='text-df'>v1.0</text>
+    </view>
+    <view class='margin-top-sm'>
+      <text>By:Binz丶Gao</text>
+    </view>
+  </view>
+  <view class="cu-list menu card-menu margin-top-xl margin-bottom-xl shadow-lg">
+    <view class="cu-item arrow">
+      <view class='content' bindtap='CopyLink' data-link='https://github.com/gaobinzhan/Happy'>
+        <text class='icon-github text-grey'></text>
+        <text class='text-grey'>GitHub</text>
+      </view>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class='content' url='../about/about' hover-class='none'>
+        <image src='/images/logo.png' class='png' mode='aspectFit'></image>
+        <text class='text-grey'>关于Happy圈</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class='content' url='../log/log' hover-class='none'>
+        <text class='icon-formfill text-green'></text>
+        <text class='text-grey'>日志</text>
+      </navigator>
+    </view>
+    <view class="cu-item arrow">
+      <view class='content' bindtap="showQrcode">
+        <text class='icon-appreciatefill text-red'></text>
+        <text class='text-grey'>赞赏支持</text>
+      </view>
+    </view>
+    <view class="cu-item arrow">
+      <button class='cu-btn content' open-type='feedback'>
+        <text class='icon-writefill text-cyan'></text>
+        <text class='text-grey'>意见反馈</text>
+      </button>
+    </view>
+    <view class="cu-item arrow">
+      <button class='cu-btn content' open-type='contact'>
+        <text class='icon-writefill text-cyan'></text>
+        <text class='text-grey'>联系客服</text>
+      </button>
+    </view>
+    <view class="cu-item arrow">
+      <navigator class='content' hover-class='none'>
+        <text class='icon-creativefill text-orange'></text>
+        <text class='text-grey'>Bug测试</text>
+      </navigator>
+    </view>
+  </view>
+</view>
+
+<view wx:if="{{modalName=='viewModal'?'':'show'}}">
+  <image src="/images/Dynamic.png" class="img-style" animation="{{animDynamic}}" bindtap="Dynamic"></image>
+  <image src="/images/Refresh.png" class="img-style" animation="{{animRefresh}}" bindtap="Refresh"></image>
+  <image src="/images/Top.png" class="img-style" animation="{{animTop}}" bindtap="Top"></image>
+  <image src="/images/Collect.png" class="img-plus-style" animation="{{animCollect}}" bindtap="Collect"></image>
+</view>

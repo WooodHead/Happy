@@ -1,0 +1,59 @@
+<!--pages/dynamic/index.wxml-->
+<view class="cu-custom" style="height:{{CustomBar}}px;">
+  <view class="cu-bar fixed bg-blue" style="height:{{CustomBar}}px;padding-top:{{StatusBar}}px;">
+    <navigator class='action' open-type="navigateBack" delta="1" hover-class="none">
+      <text class='icon-back'></text>
+      <text>发布动态</text>
+    </navigator>
+  </view>
+</view>
+
+<view class="cu-form-group margin-top">
+    <textarea placeholder="记录你的快乐生活" bindinput='Content' maxlength="-1" placeholder-class='placeholder'></textarea>
+</view>
+
+<view class="cu-form-group margin-top">
+    <view class="grid col-3 grid-square flex-sub">
+      <!-- <view class="padding-xs bg-img" style="background-image:url(https://image.weilanwl.com/img/square-1.jpg);">
+      </view> -->
+      <view class="padding-xs bg-img" wx:for="{{ImgUrl}}" style="background-image:url({{item}});">
+        <view class="cu-tag bg-red">
+          <text class='icon-close' bindtap='ImgDel' data-index='{{index}}'></text>
+        </view>
+      </view>
+      <view class="padding-xs solids">
+        <text class='icon-cameraadd' bindtap='ImgAdd'></text>
+      </view>
+    </view>
+</view>
+  
+<view class="cu-bar bg-white solid-bottom margin-top" bindtap='Location'>
+  <view class='action'>
+    <text class='icon-locationfill text-orange'></text>{{Location.name}}
+  </view>
+</view>
+
+<view class="cu-modal {{modalName=='LocationModal'?'show':''}}">
+  <view class="cu-dialog">
+    <view class="cu-bar bg-white justify-end">
+      <view class='content'>获取位置信息</view>
+      <view class='action' bindtap='hideModal'>
+        <text class='icon-close text-red'></text>
+      </view>
+    </view>
+    <view class='padding-xl'>
+      需要您同意授权
+    </view>
+    <view class="cu-bar bg-white justify-end">
+      <view class='action'>
+        <button class='cu-btn line-green text-green' bindtap='hideModal'>取消</button>
+        <!-- <button class='cu-btn bg-green margin-left' bindtap='hideModal'>确定</button> -->
+        <button class='cu-btn bg-green margin-left' bindtap='hideModal' open-type="openSetting" bindopensetting="callback">打开设置页</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class="padding flex flex-direction">
+  <button class='cu-btn bg-green lg' bindtap='Release'>发布</button>
+</view>
