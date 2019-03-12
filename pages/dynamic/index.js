@@ -5,9 +5,9 @@ const qiniuUploader = require("../../utils/qiniuUploader");
 function initQiniu() {
   var options = {
     region: 'ECN', // 华北区
-    uptokenURL: 'https://www.gaobinzhan.com/img/Qiniu.php',
+    uptokenURL: '',
     // uptoken: 'xxx',
-    domain: 'http://cdn.qiniu.gaobinzhan.com',
+    domain: '',
     shouldUseQiniuFileName: false
   };
   qiniuUploader.init(options);
